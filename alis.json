@@ -1,5 +1,5 @@
 {
-  "updated": true,
+  "updated": json,
   "libs": "termcolor",
   "success_msg": "Installed!",
   "run_py": "yourfile.py"
