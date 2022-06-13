@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://github.com/fledpaul/cenera">
-    <img src="img/Antio.png" height="150" width="375">
+    <img src="img/Alis.png" height="150" width="375">
   </a>
     <h3 align="center">ALIS - Automatic Library Installation Software</h3>
   <p align="center">
