@@ -1,0 +1,6 @@
+{
+  "updated": true,
+  "libs": "termcolor",
+  "success_msg": "Installed!",
+  "run_py": "yourfile.py"
+}
