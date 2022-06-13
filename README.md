@@ -25,7 +25,7 @@ With ALIS all libraries are installed directly at the first start of your progra
 * [PyQt5](https://pypi.org/project/PyQt5/)
 
 ## Usage
-  Unzip the zip file & open the ´config.json´
+  Unzip the zip file & open the `config.json´
   ```sh
   cd /alis-main/
   ```
