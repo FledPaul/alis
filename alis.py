@@ -3,44 +3,42 @@ import json
 import time
 import os
 
-# 'Alis' class
+
+# 'Alis' Class
 class Alis:
-  def ReadJson(self):
-    # Open Json
-    global ConfigJson
-    ConfigJson = open('alis.json', 'r+')
-    global Config
-    Config = json.load(ConfigJson)
+    def Run(self):
+        # Load Configuration File
+        ConfigJson = open('alis.json', 'r+')
+        Config = json.load(ConfigJson)
+        Updated = Config['updated']
 
-  def ReadConfig(self):
-    # Installation Required
-    if Config['updated'] == False:
-      time.sleep(1)
-      print()
-      global Libs
-      Libs = Config['libs'].split(' ')
-      global CurrentLib
-      CurrentLib = -1
-    
-  def InstallLibs(self):
-    # Install Libraries
-    for i in range(len(Libs)):
-      CurrentLib = CurrentLib + 1
-      os.system('pip install ' + Libs[CurrentLib]
+        # Libraries Installed?
+        if Updated == False:
+            time.sleep(1)
+            print()
+            Libs = Config['libs'].split(' ')
+            CurrentLib = -1
 
-  def UpdateJson(self):
-    # New Data + Delete Json
-    Updated = {"updated": true, "libs": Config['libs']}
-    ConfigJson.seek(0)
-    ConfigJson.truncate()
-    # Dump Json Data
-    json.dump(Updated, ConfigJson, indent=2)
-    print(Config['sucess_msg'])
+            # Install Libraries
+            for i in range(len(Libs)):
+                CurrentLib = CurrentLib + 1
+                os.system('python3 -m pip install ' + Libs[CurrentLib])
 
-    
-# Define & Run Alis
+            # Updated = True
+            LibsRaw = Config['libs']
+            SuccessMsg = Config['success_msg']
+            RunPy = Config['run_py']
+            UpdatedTrue = {'updated': True, 'libs': LibsRaw, 'success_msg': SuccessMsg, 'run_py': RunPy}
+
+            # Delete Configuration
+            ConfigJson.seek(0)
+            ConfigJson.truncate()
+
+            # Dump Configuration
+            json.dump(UpdatedTrue, ConfigJson, indent = 2)
+            print(SuccessMsg)
+
+
+# Run & Define Alis
 Alis = Alis()
-Alis.ReadJson()
-Alis.ReadConfig()
-Alis.InstallLibs()
-Alis.UpdateJson()
+Alis.Run()
