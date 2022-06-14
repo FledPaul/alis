@@ -61,16 +61,30 @@ class AppWindow(QMainWindow):
             Date = date.today()
             Date = Date.strftime('%b-%d-%Y')
 
-            # Delete Log File
+            # Delete (Existing) Log File
             try:
                 os.remove(Date + '.log')
-            except:
+            except FileNotFoundError:
                 pass
 
             # Create Log File
             LogFile = open(Date + '.log', 'a')
 
-            # Check Path
+            #####################################################
+
+            if len(Libraries) < 1:
+                print('Error : No Libraries Given')
+                LogFile.write('Error : No Libraries Given\n')
+                time.sleep(2)
+                exit()
+            else:
+                print('Success : Libraries Given')
+                LogFile.write('Success : Libraries Given\n')
+
+
+            #####################################################
+
+            # Valid Path => Yes
             if os.path.isdir(Path):
                 print('Success : Valid Path')
                 LogFile.write('Success : Valid Path\n')
@@ -80,27 +94,37 @@ class AppWindow(QMainWindow):
                 time.sleep(2)
                 exit()
 
-            # Check File
+            # Slash Given => Yes/No
             if Path.endswith('/'):
                 Slash = ''
             else:
                 Slash = '/'
 
+            #####################################################
+
+            # Python File => Yes --- Not Empty => Yes
+            if str(File).endswith('.py'):
+                print('Success : Python File')
+                LogFile.write('Success : Python File\n')
+            else:
+                print('Error : No Python File')
+                LogFile.write('Error : No Python File\n')
+                time.sleep(2)
+                exit()
+
+            # File Exists => Yes --- Path Exists => Yes
             if os.path.isfile(Path + Slash + File):
                 print('Success : Valid File')
                 LogFile.write('Success : Valid File\n')
             else:
                 print('Error : Invalid File')
                 LogFile.write('Error : Invalid File\n')
+                time.sleep(2)
+                exit()
 
-            # Success Message => String
-            try:
-                SuccessMsg = str(SuccessMsg)
-            except:
-                print('Error : Invalid Success Message')
-                LogFile.write('Error : Invalid Success Message\n')
+            #####################################################
 
-            # Create Json => Path + 'alis.json'
+            # Create Json File (Given Path)
             try:
                 ExtJson = open(Path + Slash + 'alis.json', 'w', encoding='utf-8')
                 JsonData = {'updated': False, 'libs': Libraries, 'success_msg': SuccessMsg, 'run_py': File}
@@ -108,12 +132,14 @@ class AppWindow(QMainWindow):
                 print('Success : Json Creation')
                 print('Success : Wrote Json Data')
                 LogFile.write('Success : Json Creation\n')
-                LogFile.write('Success : Wrote Json Data')
+                LogFile.write('Success : Wrote Json Data\n')
             except:
                 print('Error : Json Creation Failed')
-                LogFile.write('Error : Json Creation Failed')
+                LogFile.write('Error : Json Creation Failed\n')
+                time.sleep(2)
+                exit()
 
-            # Create Python => Path
+            # Create Python File (Given Path)
             try:
                 ExtPython = open(Path + Slash + 'run.py', 'w')
                 IntPython = open('content.py', 'r')
@@ -121,10 +147,18 @@ class AppWindow(QMainWindow):
                 for Data in IntPython:
                     ExtPython.write(Data)
                 print('Success : Python Creation')
-                LogFile.write('Success : Python Creaation')
+                LogFile.write('Success : Python Creation\n')
             except:
                 print('Error : Python Creation Failed')
-                LogFile.write('Error : Python Creation Failed')           
+                LogFile.write('Error : Python Creation Failed\n')
+                time.sleep(2)
+                exit()
+
+            #####################################################
+
+            # Change 'Install' To 'Installed'
+            self.InstallBtn.setText('Installed')
+
 
         # Install Button
         self.InstallBtn = QPushButton('Install', self)
