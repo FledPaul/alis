@@ -139,6 +139,21 @@ class AppWindow(QMainWindow):
                 time.sleep(2)
                 exit()
 
+            # Run-File Exists => Run-File => Start-File => Start-File Exists => Run-App-File
+            if os.path.isfile(Path + Slash + 'run.py'):
+                print('Warning : Run-File Already Given')
+                LogFile.write('Warning : Run-File Already Given\n')
+                RunFile = 'start.py'
+            elif os.path.isfile(Path + Slash + 'start.py'):
+                print('Warning : Start-File Already Given')
+                LogFile.write('Warning : Start-File Already Given\n')
+                RunFile = 'run-app.py'
+            elif os.path.isfile(Path + Slash + 'run-app.py'):
+                print('Warning : Run-App-File Already Given')
+                LogFile.write('Error : Run-App-File Already Given\n')
+                time.sleep(2)
+                exit()
+
             # Create Python File (Given Path)
             try:
                 ExtPython = open(Path + Slash + 'run.py', 'w')
