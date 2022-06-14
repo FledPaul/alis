@@ -29,20 +29,12 @@ With ALIS all libraries are installed directly at the first start of your progra
   ```sh
   cd /alis-main/
   ```
-In it you will now see several variables. The variable `updated` should be set to `false` by default. In the variable `libs` you can now enter all libraries that should be installed, separated by a space. In the variable `success_msg` you can enter a message, which should be output on a successful installation. Finally you write in the `run_py` variable only the file path/your file name.
-
-Now you just have to drag the `alis.py` and `alis.json` into your program folder and you are done! The user now has to execute the `alis.py` at every start. You should note this in your readme file. Of course you can rename the file or modify it in some other way.
+Now just run the alis.exe file.
   
  ## Roadmap
-- [ ] Add .exe
+- [x] Add .exe
 - [ ] Add .appimage
-- [ ] Add .log
-- [ ] Multi-Language Support
-    - [ ] German
-    - [ ] Spanish
-    - [ ] Mandarin
-    - [ ] Hindi
-    - [ ] French
+- [x] Add .log
 
 ## Donations
 ```sh
