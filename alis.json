@@ -1,6 +1,0 @@
-{
-  "updated": false,
-  "libs": "libraries seperated with space",
-  "success_msg": "enter success message",
-  "run_py": "your_file.py"
-}
