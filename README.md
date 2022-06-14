@@ -36,6 +36,7 @@ Now just run the `alis.exe` file. Alternatively you can also run the `alis.py` f
  ## Roadmap
 - [x] Add .exe
 - [x] Add .log
+- [ ] Add .deb
 - [ ] Add .appimage
 - [ ] Add Darkmode
 
