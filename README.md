@@ -29,12 +29,15 @@ With ALIS all libraries are installed directly at the first start of your progra
   ```sh
   cd /alis-main/
   ```
-Now just run the alis.exe file.
+Now just run the `alis.exe` file. Alternatively you can also run the `alis.py` file. A user interface opens. Here you enter your libraries, file path, file name and a confirmation message in case of a successful installation. This then looks like this, for example:
+
+<img src="img/Screenshot.png" width="500" style="float: left">
   
  ## Roadmap
 - [x] Add .exe
-- [ ] Add .appimage
 - [x] Add .log
+- [ ] Add .appimage
+- [ ] Add Darkmode
 
 ## Donations
 ```sh
