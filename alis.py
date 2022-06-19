@@ -1,13 +1,11 @@
 # Import Libraries
-import imp
 import sys
 import os
 import time
 import json
 
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QLineEdit, QPushButton
-from PyQt5.QtCore import QSize
 from datetime import date
 
 
@@ -123,7 +121,7 @@ class AppWindow(QMainWindow):
                 print('Error : No Libraries Given')
                 LogFile.write('Error : No Libraries Given\n')
                 time.sleep(2)
-                exit()
+                sys.exit('Exit')
             else:
                 print('Success : Libraries Given')
                 LogFile.write('Success : Libraries Given\n')
@@ -139,7 +137,7 @@ class AppWindow(QMainWindow):
                 print('Error : Invalid Path')
                 LogFile.write('Error : Invalid Path\n')
                 time.sleep(2)
-                exit()
+                sys.exit('Exit')
 
             # Slash Given => Yes/No
             if Path.endswith('/'):
@@ -157,7 +155,7 @@ class AppWindow(QMainWindow):
                 print('Error : No Python File')
                 LogFile.write('Error : No Python File\n')
                 time.sleep(2)
-                exit()
+                sys.exit('Exit')
 
             # File Exists => Yes --- Path Exists => Yes
             if os.path.isfile(Path + Slash + File):
@@ -167,7 +165,7 @@ class AppWindow(QMainWindow):
                 print('Error : Invalid File')
                 LogFile.write('Error : Invalid File\n')
                 time.sleep(2)
-                exit()
+                sys.exit('Exit')
 
             #####################################################
 
@@ -184,22 +182,7 @@ class AppWindow(QMainWindow):
                 print('Error : Json Creation Failed')
                 LogFile.write('Error : Json Creation Failed\n')
                 time.sleep(2)
-                exit()
-
-            # Run-File Exists => Run-File => Start-File => Start-File Exists => Run-App-File
-            if os.path.isfile(Path + Slash + 'run.py'):
-                print('Warning : Run-File Already Given')
-                LogFile.write('Warning : Run-File Already Given\n')
-                RunFile = 'start.py'
-            elif os.path.isfile(Path + Slash + 'start.py'):
-                print('Warning : Start-File Already Given')
-                LogFile.write('Warning : Start-File Already Given\n')
-                RunFile = 'run-app.py'
-            elif os.path.isfile(Path + Slash + 'run-app.py'):
-                print('Warning : Run-App-File Already Given')
-                LogFile.write('Error : Run-App-File Already Given\n')
-                time.sleep(2)
-                exit()
+                sys.exit('Exit')
 
             # Create Python File (Given Path)
             try:
@@ -213,7 +196,7 @@ class AppWindow(QMainWindow):
                 print('Error : Python Creation Failed')
                 LogFile.write('Error : Python Creation Failed\n')
                 time.sleep(2)
-                exit()
+                sys.exit('Exit')
 
             #####################################################
 
